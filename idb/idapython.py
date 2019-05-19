@@ -1604,6 +1604,11 @@ class ida_funcs:
             else:
                 raise RuntimeError('unexpected wordsize')
 
+    def get_func_qty(self):
+        return len(idb.analysis.Functions(self.idb).functions)
+
+    def getn_func(self, n):
+        return idb.analysis.Functions(self.idb).functions.values()[n]
 
 class BasicBlock(object):
     '''
@@ -1685,6 +1690,8 @@ class idaapi:
     def __init__(self, db, api):
         self.idb = db
         self.api = api
+
+        self.BADADDR = self.api.idc.BADADDR
 
     def _find_bb_end(self, ea):
         '''
@@ -1998,6 +2005,14 @@ class idaapi:
     def get_file_type_name(self):
         return self.TYPE_NAMES[self.get_inf_structure().filetype]
 
+    def get_func_qty(self):
+        return self.api.ida_funcs.get_func_qty()
+
+    def getn_func(self, n):
+        return self.api.ida_funcs.getn_func(n)
+
+    def get_name(self, ea):
+        return self.api.ida_name.get_name(ea)
 
 class StringItem:
     def __init__(self, ea, length, strtype, s):
