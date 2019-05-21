@@ -532,11 +532,10 @@ def test_function_names(kernel32_idb, version, bitness, expected):
     api = idb.IDAPython(kernel32_idb)
 
     assert api.idc.GetFunctionName(0x68901695) == 'DllEntryPoint'
-    assert api.idc.GetFunctionName(0x689016b5) == 'sub_689016b5'
+    assert api.idc.GetFunctionName(0x689016b5) == 'sub_689016B5'
 
-    with pytest.raises(KeyError):
-        # this is issue #7.
-        _ = api.idc.GetFunctionName(0x689018e5)
+    # this is issue #7.
+    assert api.idc.GetFunctionName(0x689018e5) == 'sub_689017D4'
 
 
 @slow
