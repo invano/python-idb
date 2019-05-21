@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
+import os
 import re
+import struct
 import logging
 import weakref
 import collections
@@ -1079,6 +1081,9 @@ class idc:
         return self.api.ida_nalt.retrieve_input_file_sha256()
 
     def GetInputFile(self):
+        return os.path.basename(self.api.ida_nalt.get_input_file_path())
+
+    def get_input_file_path(self):
         return self.api.ida_nalt.get_input_file_path()
 
     def Comment(self, ea):
