@@ -660,6 +660,7 @@ class idc:
             self.SEGATTR_COLOR   = 100
 
             self.BADADDR = 0xFFFFFFFF
+            self.__EA64__ = False
 
         elif self.idb.wordsize == 8:
             self.FUNCATTR_START   = 0
@@ -693,6 +694,7 @@ class idc:
             self.SEGATTR_COLOR   = 188
 
             self.BADADDR = 0xFFFFFFFFFFFFFFFF
+            self.__EA64__ = True
         else:
             raise RuntimeError('unexpected wordsize')
 
