@@ -1106,9 +1106,6 @@ class idc:
     def GetInputFile(self):
         return os.path.basename(self.api.ida_nalt.get_input_file_path())
 
-    def get_input_file_path(self):
-        return self.api.ida_nalt.get_input_file_path()
-
     def Comment(self, ea):
         return self.api.ida_bytes.get_cmt(ea, False)
 
@@ -2132,15 +2129,6 @@ class idaapi:
 
     def get_file_type_name(self):
         return self.TYPE_NAMES[self.get_inf_structure().filetype]
-
-    def get_func_qty(self):
-        return self.api.ida_funcs.get_func_qty()
-
-    def getn_func(self, n):
-        return self.api.ida_funcs.getn_func(n)
-
-    def get_name(self, ea):
-        return self.api.ida_name.get_name(ea)
 
 class StringItem:
     def __init__(self, ea, length, strtype, s):
